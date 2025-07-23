@@ -1,5 +1,6 @@
 import streamlit as st
-from langchain.document_loaders import PyPDFLoader, Docx2txtLoader
+from langchain_community.document_loaders import PyPDFLoader, Docx2txtLoader
+
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
