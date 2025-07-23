@@ -3,6 +3,6 @@ langchain
 openai
 faiss-cpu
 tiktoken
-unstructured
 pypdf
 python-docx
+unstructured
