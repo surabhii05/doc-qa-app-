@@ -1,7 +1,6 @@
 streamlit
-langchain
-langchain-community
+langchain>=0.1.16
+langchain-community>=0.0.19
 openai
 faiss-cpu
-python-docx
-PyPDF2
+unstructured
