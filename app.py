@@ -1,12 +1,10 @@
 import streamlit as st
-from langchain_community.document_loaders import PyPDFLoader
-from langchain_community.document_loaders import UnstructuredWordDocumentLoader as Docx2txtLoader
+from langchain.document_loaders import PyPDFLoader, Docx2txtLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.chat_models import ChatOpenAI
-
 import tempfile
 import os
 
