@@ -31,15 +31,29 @@ if uploaded_file and query:
         temp_file.close()
 
         # Load document
-        if uploaded_file.name.endswith(".pdf"):
-            loader = PyPDFLoader(temp_file.name)
-        else:
-            loader = Docx2txtLoader(temp_file.name)
-        documents = loader.load()
+        # Load document
+if uploaded_file.name.endswith(".pdf"):
+    loader = PyPDFLoader(temp_file.name)
+else:
+    loader = Docx2txtLoader(temp_file.name)
+documents = loader.load()
 
-        # Chunk and embed
-        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
-        chunks = text_splitter.split_documents(documents)
+# ✅ Check if document has content
+if not documents:
+    st.error("❌ Document is empty or unreadable. Try another file.")
+    os.remove(temp_file.name)
+    st.stop()
+
+# Chunk and embed
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+chunks = text_splitter.split_documents(documents)
+
+# ✅ Check if chunks were created
+if not chunks:
+    st.error("❌ Could not create text chunks. Try a different file.")
+    os.remove(temp_file.name)
+    st.stop()
+
         embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
         db = FAISS.from_documents(chunks, embeddings)
 
