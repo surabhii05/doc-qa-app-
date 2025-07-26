@@ -2,8 +2,8 @@ streamlit
 langchain
 langchain-community
 openai
-faiss-cpu
 tiktoken
+faiss-cpu
 unstructured
-pypdf
 python-docx
+pypdf
